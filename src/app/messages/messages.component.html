@@ -1,0 +1,13 @@
+<div class="messages-clear">
+<h2>Messages</h2>
+
+<div *ngIf="messageService.messages.length">
+  <button class="clear" (click)="messageService.clear()">Clear</button>
+  <!-- Angular 'event binding' binds the click event to the MessageService.clear() method-->
+  <div *ngFor='let message of messageService.messages'> {{message}} </div>
+</div>
+
+<label for="msg">Add A Message</label><br/>
+<input type="text" #msg name="msg" />
+<button class="add" (click)="messageService.add(msg.value)">Add</button> 
+</div>

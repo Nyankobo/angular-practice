@@ -1,0 +1,52 @@
+<h2>My Heroes</h2>
+<div class="hero-list">
+  <!-- 
+    *ngFor is a REPEATER DIRECTIVE; will repeat host element for each element in a list 
+  
+    <li> is HOST ELEMENT
+    heroes is list from the HeroesComponent class
+    hero holds the hero object for each iteration
+  -->
+  <!-- 
+    (click) = EVENT BINDING SYNTAX
+    ~ parents tell Angular to LISTEN for the li click event; then Angular executes the expression
+  -->
+
+  <!-- 
+    [class.selected]="hero === selectedHero"
+    When the current row hero is the same as the selectedHero, 
+    Angular adds the selected CSS class. When the two heroes 
+    are different, Angular removes the class.
+  -->
+<div>
+  <ul class="heroes">
+    <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}"><span class="badge">{{hero.id}}</span> {{hero.name}}</a>
+    </li>
+  </ul>
+</div>
+  <p [appHighlight]="color" defaultColor="violet">Hayy</p>
+  <!--
+The 'hero' property must be an INPUT property, annotated with @Input() decorator,
+b/c external HeroesComponent will bind to it like this:
+
+HeroesComponent = parent, HeroDetail = child
+
+[hero]="selectedHero" is a ONE WAY PROPERTY BINDING from selectedhero to hero on DetailComponent
+-->
+<!--   <app-hero-detail [hero]="selectedHero"></app-hero-detail>
+ -->  
+ 
+ <!--
+  ERROR:
+  Template parse errors:  Can't bind to 'ngModel' since it isn't a known property of 'input'.
+  MEANS we need to opt-in to using the FormsModule directive
+
+  Angular needs to know METADATA -- files, libraries, etc. that the app uses.
+    Some metadata exists in @Component decorator, and some will be in @NgModule decorators, etc.
+    
+    OPT-IN:
+    MOST IMPORTANT @NgModule decorator annotates the TOP-LEVEL AppModule CLASS -- app.module.ts
+    ~~~~~> Opt-in to FormsModule here <~~~~~~
+ -->
+</div>

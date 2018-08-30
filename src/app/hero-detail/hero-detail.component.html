@@ -1,0 +1,39 @@
+<!--
+  *ngIf
+  Will render if selectedHero is defined
+-->
+<div class="hero-float">
+  <div class="hero-bit" *ngIf="hero">
+    <h2>{{ hero.name | uppercase }} Details</h2>
+    <div class="hero-container">
+    <div>
+      <span>I.D.: </span>{{hero.id}}</div>
+    <div>
+
+      <!-- implement 2-way binding [(ngModel)] between input form element and hero.name property -->
+      <!-- binds property to the text box so data can flow IN BOTH DIRECTIONS from property to texbox-->
+      <label for="name">NAME: </label>
+      <input id="name" [(ngModel)]="hero.name" placeholder="name" />
+    </div>
+  </div>
+  </div>
+  <button (click)="goBack()">Go Back</button>
+</div>
+
+<!-- The 'hero' property must be an INPUT property, annotated with @Input() decorator,
+b/c external HeroesComponent will bind to it like this:
+    HeroesComponent = parent, HeroDetail = child
+    [hero]="selectedHero" is a ONE WAY PROPERTY BINDING from selectedhero to hero on DetailComponent
+-->
+<!--
+  ERROR:
+  Template parse errors:  Can't bind to 'ngModel' since it isn't a known property of 'input'.
+  MEANS we need to opt-in to using the FormsModule directive
+
+  Angular needs to know METADATA -- files, libraries, etc. that the app uses.
+    Some metadata exists in @Component decorator, and some will be in @NgModule decorators, etc.
+    
+    OPT-IN:
+    MOST IMPORTANT @NgModule decorator annotates the TOP-LEVEL AppModule CLASS -- app.module.ts
+    ~~~~~> Opt-in to FormsModule here <~~~~~~
+ -->

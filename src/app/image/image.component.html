@@ -1,0 +1,17 @@
+<h3>Stuff</h3>
+<div class="hero-float">
+    <div class="hero-bit" *ngIf="stuff">
+      <div class="hero-container">
+      <div>
+        <span>I.D.: </span>{{stuff.id}}</div>
+      <div>
+  
+        <!-- implement 2-way binding [(ngModel)] between input form element and hero.name property -->
+        <!-- binds property to the text box so data can flow IN BOTH DIRECTIONS from property to texbox-->
+        <label for="name">NAME: </label>
+        <input id="name" [(ngModel)]="stuff.description" placeholder="name" />
+      </div>
+    </div>
+    </div>
+    <button (click)="goBack()">Go Back</button>
+  </div>
